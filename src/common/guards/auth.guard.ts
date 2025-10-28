@@ -4,14 +4,20 @@ import {
   ExecutionContext,
   UnauthorizedException,
 } from '@nestjs/common';
+import { Request } from 'express';
+import type { User } from '@prisma/client';
 import { UserService } from '../../modules/user/user.service';
+
+interface RequestWithUser extends Request {
+  user: User;
+}
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private userService: UserService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest<RequestWithUser>();
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
@@ -22,14 +28,14 @@ export class AuthGuard implements CanActivate {
       const user = await this.userService.findByToken(token);
       request.user = user;
       return true;
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid or expired token');
     }
   }
 
-  private extractTokenFromHeader(request: any): string | undefined {
+  private extractTokenFromHeader(request: Request): string | undefined {
     const authorization = request.headers.authorization;
-    if (!authorization) {
+    if (!authorization || typeof authorization !== 'string') {
       return undefined;
     }
 
@@ -37,7 +43,7 @@ export class AuthGuard implements CanActivate {
     if (authorization.startsWith('Bearer ')) {
       return authorization.substring(7);
     }
-    
+
     return authorization;
   }
 }

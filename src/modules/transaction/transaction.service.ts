@@ -12,10 +12,7 @@ export class TransactionService {
     // Get all transactions where user is sender or receiver
     const transactions = await this.prisma.transaction.findMany({
       where: {
-        OR: [
-          { fromUsername: user.username },
-          { toUsername: user.username },
-        ],
+        OR: [{ fromUsername: user.username }, { toUsername: user.username }],
         type: 'transfer', // Only include transfers, not top-ups
       },
       orderBy: {

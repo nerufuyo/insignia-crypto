@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { TransferDto } from './dto/transfer.dto';
 import type { User } from '@prisma/client';
@@ -7,7 +11,10 @@ import type { User } from '@prisma/client';
 export class TransferService {
   constructor(private prisma: PrismaService) {}
 
-  async transfer(sender: User, transferDto: TransferDto): Promise<{ message: string }> {
+  async transfer(
+    sender: User,
+    transferDto: TransferDto,
+  ): Promise<{ message: string }> {
     const { to_username, amount } = transferDto;
 
     // Prevent self-transfer
