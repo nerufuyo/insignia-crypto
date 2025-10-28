@@ -86,10 +86,14 @@ describe('UserService', () => {
     });
 
     it('should generate a unique token for each user', async () => {
+      // Generate realistic 64-character hex tokens
+      const token1 = '0'.repeat(64);
+      const token2 = '1'.repeat(64);
+      
       const mockUser1 = {
         id: '1',
         username: 'user1',
-        token: 'token1',
+        token: token1,
         balance: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -98,7 +102,7 @@ describe('UserService', () => {
       const mockUser2 = {
         id: '2',
         username: 'user2',
-        token: 'token2',
+        token: token2,
         balance: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -118,6 +122,7 @@ describe('UserService', () => {
       expect(typeof result2.token).toBe('string');
       expect(result1.token.length).toBe(64); // 32 bytes = 64 hex chars
       expect(result2.token.length).toBe(64);
+      expect(result1.token).not.toBe(result2.token); // Tokens should be unique
     });
   });
 

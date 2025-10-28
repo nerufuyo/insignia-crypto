@@ -43,14 +43,15 @@ describe('AuthGuard', () => {
   const createMockExecutionContext = (
     authorization?: string,
   ): ExecutionContext => {
+    const mockRequest = {
+      headers: {
+        authorization,
+      },
+      user: undefined,
+    };
     return {
       switchToHttp: () => ({
-        getRequest: () => ({
-          headers: {
-            authorization,
-          },
-          user: undefined,
-        }),
+        getRequest: () => mockRequest,
       }),
     } as ExecutionContext;
   };
