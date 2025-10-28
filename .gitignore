@@ -50,6 +50,3 @@ prisma/migrations/*
 /docs
 
 /generated/prisma
-
-# Docs
-/docs
