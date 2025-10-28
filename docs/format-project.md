@@ -1,0 +1,20 @@
+# Project Formatting Guidelines
+- Avoid redundant formatting.
+- Use consistent heading styles.
+- Ensure proper indentation for code blocks.
+- Use bullet points for lists.
+- Maintain uniform font styles and sizes.
+- Include images with appropriate captions.
+- Use hyperlinks for references.
+- Proofread for spelling and grammar.
+- Follow the specified citation style for references.
+- Keep the document layout clean and organized.
+- Use tables for structured data.
+- Ensure accessibility compliance.
+- Regularly update formatting as per new guidelines.
+- Utilize templates for standard documents.
+- Test document compatibility across different platforms.
+- Backup documents before making significant changes.
+- Avoid emojis 
+- Use version control for collaborative projects.
+- Maintain a changelog for document revisions. in professional documents.
