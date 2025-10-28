@@ -48,5 +48,6 @@ prisma/migrations/*
 
 # Documentation
 /docs
+PROJECT_SUMMARY.md
 
 /generated/prisma

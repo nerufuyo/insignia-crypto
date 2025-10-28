@@ -2,7 +2,7 @@
 
 A simple backend API for managing cryptocurrency wallet operations, built with NestJS, Prisma, and PostgreSQL.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -20,7 +20,7 @@ A simple backend API for managing cryptocurrency wallet operations, built with N
 - [Troubleshooting](#troubleshooting)
 - [Deployment](#deployment)
 
-## ✨ Features
+## Features
 
 - **User Registration**: Create accounts with unique usernames
 - **Authentication**: Token-based authentication system
@@ -33,7 +33,7 @@ A simple backend API for managing cryptocurrency wallet operations, built with N
 - **Error Handling**: Global exception handling with detailed error responses
 - **API Documentation**: Interactive Swagger/OpenAPI documentation
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Framework**: NestJS v11+
 - **Language**: TypeScript
@@ -43,7 +43,7 @@ A simple backend API for managing cryptocurrency wallet operations, built with N
 - **Documentation**: Swagger/OpenAPI
 - **Code Quality**: ESLint, Prettier
 
-## 📦 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -52,7 +52,7 @@ Before you begin, ensure you have the following installed:
 - **npm**: v9+ (comes with Node.js)
 - **Git**: Latest version
 
-## 🚀 Installation
+## Installation
 
 1. **Clone the repository**
 
@@ -75,7 +75,7 @@ cp .env.example .env
 
 Edit `.env` with your database credentials (see [Environment Variables](#environment-variables))
 
-## 🔐 Environment Variables
+## Environment Variables
 
 Create a `.env` file in the root directory with the following variables:
 
@@ -90,7 +90,7 @@ NODE_ENV=development
 
 **Important**: Replace `username` and `password` with your PostgreSQL credentials.
 
-## 🗄 Database Setup
+## Database Setup
 
 1. **Create PostgreSQL database**
 
@@ -123,7 +123,7 @@ npx prisma studio
 
 Opens Prisma Studio at `http://localhost:5555` for database visualization.
 
-## 🏃 Running the Application
+## Running the Application
 
 ### Development Mode
 
@@ -149,7 +149,7 @@ npm run start:prod
 npm run start
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 Once the application is running, access the interactive Swagger documentation:
 
@@ -161,7 +161,7 @@ The Swagger interface provides:
 - Interactive API testing
 - Authentication examples
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### User Management
 
@@ -297,7 +297,7 @@ Authorization: Bearer <token>
 ]
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Run Unit Tests
 
@@ -319,7 +319,7 @@ npm run test:cov
 
 Coverage reports will be generated in the `coverage/` directory.
 
-## � Docker Deployment
+## Docker Deployment
 
 ### Quick Start with Docker
 
@@ -369,7 +369,7 @@ chmod +x deploy-docker.sh
 
 For detailed deployment instructions (Railway, Render, Heroku, AWS, etc.), see [DEPLOYMENT.md](./DEPLOYMENT.md)
 
-## �📁 Project Structure
+## Project Structure
 
 ```
 insignia-crypto/
@@ -396,7 +396,7 @@ insignia-crypto/
 └── tsconfig.json
 ```
 
-## 🏗 Architecture
+## Architecture
 
 This project follows **Clean Architecture** principles:
 
@@ -422,7 +422,7 @@ This project follows **Clean Architecture** principles:
 
 For detailed architecture documentation, see [ARCHITECTURE.md](./ARCHITECTURE.md)
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Port Already in Use
 
@@ -490,16 +490,16 @@ rm -rf dist/
 npm run build
 ```
 
-## 📄 License
+## License
 
 This project is [MIT licensed](LICENSE).
 
-## 👥 Author
+## Author
 
 **Nerufuyo**
 - GitHub: [@nerufuyo](https://github.com/nerufuyo)
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome!
 
@@ -509,7 +509,7 @@ Contributions, issues, and feature requests are welcome!
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 Commit Convention
+## Commit Convention
 
 This project follows conventional commits:
 
@@ -521,7 +521,7 @@ This project follows conventional commits:
 - `test:` Adding/updating tests
 - `chore:` Maintenance tasks
 
-## 🚀 Deployment
+## Deployment
 
 For production deployment instructions, see our comprehensive [Deployment Guide](./DEPLOYMENT.md).
 
@@ -533,11 +533,11 @@ Supported platforms:
 - **AWS EC2**
 - Manual deployment with PM2
 
-## 📄 License
+## License
 
 This project is [MIT licensed](LICENSE).
 
 ---
 
-**Built with ❤️ using NestJS**
+**Built with NestJS**
 
