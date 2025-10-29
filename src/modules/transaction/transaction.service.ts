@@ -24,7 +24,7 @@ export class TransactionService {
       return [];
     }
 
-    // Transform transactions to show username and amount
+    // Transform transactions to show username, amount, and created_at
     // Debits (outgoing) should be negative
     const formattedTransactions = transactions.map((tx) => {
       const isDebit = tx.fromUsername === user.username;
@@ -32,8 +32,10 @@ export class TransactionService {
       const amount = isDebit ? -tx.amount : tx.amount;
 
       return {
+        id: tx.id,
         username: otherUsername,
         amount,
+        created_at: tx.createdAt.toISOString(),
         absoluteAmount: Math.abs(amount),
       };
     });
@@ -42,9 +44,11 @@ export class TransactionService {
     formattedTransactions.sort((a, b) => b.absoluteAmount - a.absoluteAmount);
 
     // Return top 10, removing the absoluteAmount helper field
-    return formattedTransactions.slice(0, 10).map(({ username, amount }) => ({
+    return formattedTransactions.slice(0, 10).map(({ username, amount, id, created_at }) => ({
+      id,
       username,
       amount,
+      created_at,
     }));
   }
 

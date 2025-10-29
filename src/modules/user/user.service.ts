@@ -41,6 +41,23 @@ export class UserService {
     };
   }
 
+  async login(registerDto: RegisterDto): Promise<RegisterResponseDto> {
+    const { username } = registerDto;
+
+    // Find existing user
+    const user = await this.prisma.user.findUnique({
+      where: { username },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return {
+      token: user.token,
+    };
+  }
+
   async findByToken(token: string) {
     const user = await this.prisma.user.findUnique({
       where: { token },

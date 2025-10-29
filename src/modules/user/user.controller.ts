@@ -28,12 +28,35 @@ export class UserController {
     type: RegisterResponseDto,
   })
   @ApiResponse({
-    status: 400,
-    description: 'Bad request - Invalid input or username already exists',
+    status: 409,
+    description: 'Conflict - Username already exists',
   })
   async register(
     @Body() registerDto: RegisterDto,
   ): Promise<RegisterResponseDto> {
     return this.userService.register(registerDto);
+  }
+
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Login existing user',
+    description:
+      'Authenticates an existing user and returns their authentication token',
+  })
+  @ApiBody({ type: RegisterDto })
+  @ApiResponse({
+    status: 200,
+    description: 'User successfully logged in',
+    type: RegisterResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found',
+  })
+  async login(
+    @Body() registerDto: RegisterDto,
+  ): Promise<RegisterResponseDto> {
+    return this.userService.login(registerDto);
   }
 }

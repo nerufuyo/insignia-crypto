@@ -27,7 +27,7 @@ export class TransferController {
   constructor(private readonly transferService: TransferService) {}
 
   @Post()
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary: 'Transfer balance to another user',
     description:
@@ -35,8 +35,14 @@ export class TransferController {
   })
   @ApiBody({ type: TransferDto })
   @ApiResponse({
-    status: 204,
-    description: 'Transfer completed successfully (No Content)',
+    status: 200,
+    description: 'Transfer completed successfully',
+    schema: {
+      type: 'object',
+      properties: {
+        message: { type: 'string', example: 'Transfer successful' },
+      },
+    },
   })
   @ApiResponse({
     status: 400,
