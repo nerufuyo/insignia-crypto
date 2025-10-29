@@ -23,4 +23,16 @@ export class RegisterDto {
     message: 'Username can only contain letters, numbers, and underscores',
   })
   username: string;
+
+  @ApiProperty({
+    description: 'Password for the account',
+    example: 'SecurePass123!',
+    minLength: 6,
+    maxLength: 100,
+  })
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(6, { message: 'Password must be at least 6 characters long' })
+  @MaxLength(100, { message: 'Password must not exceed 100 characters' })
+  password: string;
 }

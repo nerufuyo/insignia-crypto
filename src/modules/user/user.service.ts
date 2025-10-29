@@ -2,18 +2,22 @@ import {
   Injectable,
   ConflictException,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { RegisterDto } from './dto/register.dto';
 import { RegisterResponseDto } from './dto/register-response.dto';
 import { randomBytes } from 'crypto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
+  private readonly SALT_ROUNDS = 10;
+
   constructor(private prisma: PrismaService) {}
 
   async register(registerDto: RegisterDto): Promise<RegisterResponseDto> {
-    const { username } = registerDto;
+    const { username, password } = registerDto;
 
     // Check if username already exists
     const existingUser = await this.prisma.user.findUnique({
@@ -24,6 +28,9 @@ export class UserService {
       throw new ConflictException('Username already exists');
     }
 
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, this.SALT_ROUNDS);
+
     // Generate unique token
     const token = this.generateToken();
 
@@ -31,6 +38,7 @@ export class UserService {
     const user = await this.prisma.user.create({
       data: {
         username,
+        password: hashedPassword,
         token,
         balance: 0,
       },
@@ -42,7 +50,7 @@ export class UserService {
   }
 
   async login(registerDto: RegisterDto): Promise<RegisterResponseDto> {
-    const { username } = registerDto;
+    const { username, password } = registerDto;
 
     // Find existing user
     const user = await this.prisma.user.findUnique({
@@ -51,6 +59,13 @@ export class UserService {
 
     if (!user) {
       throw new NotFoundException('User not found');
+    }
+
+    // Verify password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid password');
     }
 
     return {
