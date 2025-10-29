@@ -8,11 +8,13 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 
-# Install dependencies
+# Install ALL dependencies (including devDependencies needed for build)
 RUN npm ci
 
-# Copy source code
-COPY . .
+# Copy source code (tsconfig, nest-cli.json, src)
+COPY tsconfig*.json ./
+COPY nest-cli.json ./
+COPY src ./src
 
 # Set a dummy DATABASE_URL for build time (Prisma needs it to generate client)
 # The real DATABASE_URL will be provided at runtime by Railway
@@ -23,6 +25,9 @@ RUN npx prisma generate
 
 # Build application
 RUN npm run build
+
+# Verify dist folder was created
+RUN ls -la dist/
 
 # Production stage
 FROM node:20-alpine AS production

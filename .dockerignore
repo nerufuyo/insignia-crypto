@@ -2,7 +2,7 @@
 node_modules
 npm-debug.log
 
-# Build output
+# Build output (will be generated during build)
 dist
 build
 
@@ -29,6 +29,7 @@ Thumbs.db
 # Testing
 coverage
 .nyc_output
+test
 
 # Logs
 logs
@@ -39,12 +40,15 @@ docs
 *.md
 !README.md
 
-# Development files
-.editorconfig
-.prettierrc
-.eslintrc.js
+# Deployment files (not needed in container)
+railway.json
+nixpacks.toml
+.railwayignore
+deploy*.sh
+DEPLOY*.md
+DEPLOYMENT*.md
 
-# Docker
+# Docker files (not needed inside container)
 Dockerfile
 docker-compose.yml
 .dockerignore
