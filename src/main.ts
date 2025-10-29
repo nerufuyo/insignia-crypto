@@ -26,8 +26,12 @@ async function bootstrap() {
       'http://localhost:3000',
       /\.vercel\.app$/,
       /\.netlify\.app$/,
+      /\.workers\.dev$/,
+      /\.pages\.dev$/,
     ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   });
 
   // Swagger API Documentation
