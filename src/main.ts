@@ -20,7 +20,15 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter());
 
   // Enable CORS
-  app.enableCors();
+  app.enableCors({
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      /\.vercel\.app$/,
+      /\.netlify\.app$/,
+    ],
+    credentials: true,
+  });
 
   // Swagger API Documentation
   const config = new DocumentBuilder()
